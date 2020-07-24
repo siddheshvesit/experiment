@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.daoimpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +9,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+
+import com.example.demo.dao.ProductDao;
+import com.example.demo.pojo.ProductPojo;
 
 @Repository
 @Component
