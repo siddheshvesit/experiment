@@ -6,6 +6,7 @@ import com.example.demo.pojo.ProductPojo;
 
 public interface ProductService {
 	public List<ProductPojo>listAllRecords();
+	public void InsertProduct(ProductPojo pro);
 
 }
 	

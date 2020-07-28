@@ -20,5 +20,11 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productdao.listAllRecords();
 	}
+	@Override
+	public void InsertProduct(ProductPojo pro) {
+		// TODO Auto-generated method stub
+		productdao.InsertProduct(pro);
+		
+	}
 
 }

@@ -1,12 +1,15 @@
 package com.example.demo.pojo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ProductPojo {
 
 	int productUniqueId;
 	String productName;
 	String productCategory;
 	String ProductSubCategory;
-	String brand;
+	String ProductBrand;
 	int productWeight;
 	int productPrice;
 	public ProductPojo() {
@@ -20,7 +23,7 @@ public class ProductPojo {
 		this.productName = productName;
 		this.productCategory = productCategory;
 		this.ProductSubCategory = productSubCategory;
-		this.brand = brand;
+		this.ProductBrand = brand;
 		this.productWeight = productWeight;
 		this.productPrice = productPrice;
 	}
@@ -48,11 +51,11 @@ public class ProductPojo {
 	public void setProductSubCategory(String productSubCategory) {
 		ProductSubCategory = productSubCategory;
 	}
-	public String getBrand() {
-		return brand;
+	public String getProductBrand() {
+		return ProductBrand;
 	}
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public void setProductBrand(String brand) {
+		this.ProductBrand = brand;
 	}
 	public int getProductWeight() {
 		return productWeight;
@@ -69,7 +72,7 @@ public class ProductPojo {
 	@Override
 	public String toString() {
 		return "Product [productUniqueId=" + productUniqueId + ", productName=" + productName + ", productCategory="
-				+ productCategory + ", ProductSubCategory=" + ProductSubCategory + ", brand=" + brand
+				+ productCategory + ", ProductSubCategory=" + ProductSubCategory + ", ProductBrand=" + ProductBrand
 				+ ", productWeight=" + productWeight + ", productPrice=" + productPrice + "]";
 	}
 }
