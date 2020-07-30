@@ -26,5 +26,17 @@ public class ProductServiceImpl implements ProductService {
 		productdao.InsertProduct(pro);
 		
 	}
+	@Override
+	public void DeleteProduct(int productuniqueid) {
+		// TODO Auto-generated method stub
+		productdao.DeleteProduct(productuniqueid);
+	}
+	@Override
+	public void UpdateProduct(int productuniqueid,ProductPojo pro) {
+		// TODO Auto-generated method stub
+		productdao.UpdateProduct( productuniqueid,pro);
+		
+	}
+	
 
 }

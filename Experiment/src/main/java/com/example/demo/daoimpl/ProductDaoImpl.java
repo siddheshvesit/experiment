@@ -21,7 +21,8 @@ public class ProductDaoImpl implements ProductDao{
 
 	String GETALLRECORDS="SELECT * FROM PRODUCT_REGISTER ";
 	String INSERTPRODUCTS="insert into PRODUCT_REGISTER(product_unique_code,product_name,product_category,product_sub_category,product_brand,product_weight,product_price)values(?,?,?,?,?,?,?);";
-	//String INSERTPRODUCTS=" insert into product_register( product_unique_code, product_name, product_category,product_sub_category,product_brand, product_weight, product_price)values(124,'siddhesh','dsdsd','sdsdd','sd',234,454)";
+	String DELETEPRODUCT="DELETE FROM PRODUCT_REGISTER WHERE product_unique_code=?";	
+	String UPDATEPRODUCT="UPDATE PRODUCT_REGISTER SET product_name=?,product_category=?,product_sub_category=?,product_brand=?,product_weight=?,product_price=? WHERE product_unique_code= ?";
 	@Autowired
 	JdbcTemplate jdbctemplate;
 	@Autowired
@@ -56,7 +57,7 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public void InsertProduct(ProductPojo pro) {
 		// TODO Auto-generated method stub
-		
+		System.out.println(pro);
 		System.out.println("candidate added n progress");
 		jdbctemplate.update(INSERTPRODUCTS,pro.getProductUniqueId(),pro.getProductName(),pro.getProductCategory(),pro.getProductSubCategory(),pro.getProductBrand(),pro.getProductWeight(),pro.getProductPrice());
 		System.out.println("candidate added");
@@ -76,5 +77,22 @@ public class ProductDaoImpl implements ProductDao{
 	 * 
 	 * }
 	 */
+
+	@Override
+	public void DeleteProduct(int productuniqueid) {
+		// TODO Auto-generated method stub
+		jdbctemplate.update(DELETEPRODUCT,productuniqueid);
+		System.out.println("deleted");
+		
+	}
+	
+	public void UpdateProduct(int productuniqueid,ProductPojo pro1)
+	{
+		System.out.println(pro1);
+
+		jdbctemplate.update(UPDATEPRODUCT,pro1.getProductName(),pro1.getProductCategory(),pro1.getProductSubCategory(),pro1.getProductBrand(),pro1.getProductWeight(),pro1.getProductPrice(),productuniqueid);
+		System.out.println("product updated");
+	}
+	
 	
 }
