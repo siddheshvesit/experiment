@@ -37,6 +37,10 @@ public class ProductServiceImpl implements ProductService {
 		productdao.UpdateProduct( productuniqueid,pro);
 		
 	}
-	
+	public List<ProductPojo>FindyProductById(int uniqueid)
+	{
+		return productdao.FindyProductById(uniqueid);
+	}
+
 
 }

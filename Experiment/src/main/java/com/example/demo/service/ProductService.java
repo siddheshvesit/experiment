@@ -9,6 +9,8 @@ public interface ProductService {
 	public void InsertProduct(ProductPojo pro);
 	public void DeleteProduct(int productuniqueid);
 	public void UpdateProduct(int productuniqueid,ProductPojo pro);
+	public List<ProductPojo>FindyProductById(int uniqueid);
+
 
 }
 	
