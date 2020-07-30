@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,7 @@ public class ProductDaoImpl implements ProductDao{
 	String INSERTPRODUCTS="insert into PRODUCT_REGISTER(product_unique_code,product_name,product_category,product_sub_category,product_brand,product_weight,product_price)values(?,?,?,?,?,?,?);";
 	String DELETEPRODUCT="DELETE FROM PRODUCT_REGISTER WHERE product_unique_code=?";	
 	String UPDATEPRODUCT="UPDATE PRODUCT_REGISTER SET product_name=?,product_category=?,product_sub_category=?,product_brand=?,product_weight=?,product_price=? WHERE product_unique_code= ?";
+	String FINDBYID="select * from PRODUCT_REGISTER where product_unique_code= ? ";
 	@Autowired
 	JdbcTemplate jdbctemplate;
 	@Autowired
@@ -93,6 +95,14 @@ public class ProductDaoImpl implements ProductDao{
 		jdbctemplate.update(UPDATEPRODUCT,pro1.getProductName(),pro1.getProductCategory(),pro1.getProductSubCategory(),pro1.getProductBrand(),pro1.getProductWeight(),pro1.getProductPrice(),productuniqueid);
 		System.out.println("product updated");
 	}
+	
+	public List<ProductPojo>FindyProductById(int uniqueid)
+	{
+		System.out.println("inddaoimpl findby ids");
+		return jdbctemplate.query(FINDBYID,new ProductRowMapper(),uniqueid);
+	}
+	
+	
 	
 	
 }

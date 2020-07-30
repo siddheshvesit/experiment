@@ -51,7 +51,12 @@ public class ProductController {
 		productservice.UpdateProduct(productuniqueid,pro);
 	}
 	
-	
+	@RequestMapping(value="/findproductbyid/{id}",method = RequestMethod.GET)
+	public @ResponseBody List<ProductPojo>findproductbyid(@PathVariable("id") int uniqueid)
+	{
+		System.out.println(uniqueid);
+		return pdi.FindyProductById(uniqueid);
+	}
 	
 }
 
