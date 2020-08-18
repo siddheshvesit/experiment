@@ -49,7 +49,7 @@ public class ProductPojo {
 		return ProductSubCategory;
 	}
 	public void setProductSubCategory(String productSubCategory) {
-		ProductSubCategory = productSubCategory;
+		this.ProductSubCategory = productSubCategory;
 	}
 	public String getProductBrand() {
 		return ProductBrand;

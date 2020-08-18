@@ -3,18 +3,22 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.daoimpl.ProductDaoImpl;
 import com.example.demo.pojo.ProductPojo;
 import com.example.demo.service.ProductService;
 
-@RestController
+@Controller
 @RequestMapping("/product")
 public class ProductController {
 	
@@ -23,12 +27,24 @@ public class ProductController {
 	ProductService productservice;
 	@Autowired
 	ProductDaoImpl pdi;
+	
+	
+	  @RequestMapping(value="/hellow",method = RequestMethod.GET) public String
+	  abc(ModelMap model) { return "welcome"; }
+	 
+	
+	
 	@RequestMapping(value="/products", method= RequestMethod.GET)
-	public @ResponseBody List<ProductPojo>getAllProducts()
+	public String getAllProducts(ModelMap model)
 	{
 		System.out.println("in controller");
 		//return pls.productListAllRecords();
-		return productservice.listAllRecords();
+		List display;
+		 display=productservice.listAllRecords();
+		 System.out.println(display);
+		 model.addAttribute("records",display);
+		// return "viewtable";
+		 return "viewtable";
 	}
 	@RequestMapping(value="/insertproduct",method = RequestMethod.GET)
 	public void insertproduct(@RequestBody ProductPojo pro)
@@ -56,6 +72,15 @@ public class ProductController {
 	{
 		System.out.println(uniqueid);
 		return pdi.FindyProductById(uniqueid);
+	}
+	
+	@RequestMapping(value="/api/{id}",method = RequestMethod.GET)
+	public @ResponseBody String api(@PathVariable("id") int uniqueid)
+	{
+		
+		System.out.println(uniqueid);
+		return pdi.TestingOfApi(uniqueid);
+		
 	}
 	
 }

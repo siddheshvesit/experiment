@@ -1,5 +1,6 @@
 package com.example.demo.daoimpl;
 
+import java.io.Console;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -25,6 +26,7 @@ public class ProductDaoImpl implements ProductDao{
 	String DELETEPRODUCT="DELETE FROM PRODUCT_REGISTER WHERE product_unique_code=?";	
 	String UPDATEPRODUCT="UPDATE PRODUCT_REGISTER SET product_name=?,product_category=?,product_sub_category=?,product_brand=?,product_weight=?,product_price=? WHERE product_unique_code= ?";
 	String FINDBYID="select * from PRODUCT_REGISTER where product_unique_code= ? ";
+	String FINDAPI="select product_unique_code FROM PRODUCT_REGISTER  where product_unique_code=?";
 	@Autowired
 	JdbcTemplate jdbctemplate;
 	@Autowired
@@ -51,6 +53,18 @@ public class ProductDaoImpl implements ProductDao{
 			pro.setProductWeight(rs.getInt("product_weight"));
 			pro.setProductPrice(rs.getInt("product_price"));
 			
+			return pro;
+		}
+		
+	}
+	public class ProductRowMapper1 implements RowMapper<ProductPojo>
+	{
+
+		@Override
+		public ProductPojo mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			ProductPojo pro =new ProductPojo();
+			pro.setProductUniqueId(rs.getInt("product_unique_code"));
 			return pro;
 		}
 		
@@ -102,6 +116,22 @@ public class ProductDaoImpl implements ProductDao{
 		return jdbctemplate.query(FINDBYID,new ProductRowMapper(),uniqueid);
 	}
 	
+	public String TestingOfApi(int uniqueid)
+	{
+		List<ProductPojo>abc;
+		
+		abc=jdbctemplate.query(FINDAPI,new ProductRowMapper1(),uniqueid);
+		System.out.println(abc);
+		
+		if(abc.isEmpty())
+		{
+			System.out.println("thi si true print");
+			return "true";
+		}
+		else
+			System.out.println("thi si false print");
+			return "false";
+	}
 	
 	
 	
